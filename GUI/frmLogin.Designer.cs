@@ -170,14 +170,17 @@
             // comboCN
             // 
             this.comboCN.FormattingEnabled = true;
+            this.comboCN.Items.AddRange(new object[] {
+            "Chi nhánh chính",
+            "Hà Nội",
+            "Huế",
+            "TP Hồ Chí Minh"});
+            this.comboCN.SelectedIndex = 0;
             this.comboCN.Location = new System.Drawing.Point(96, 3);
             this.comboCN.Name = "comboCN";
             this.comboCN.Size = new System.Drawing.Size(189, 21);
             this.comboCN.TabIndex = 2;
-            this.comboCN.Items.Add("Hà Nội");
-            this.comboCN.Items.Add("Huế");
-            this.comboCN.Items.Add("TP Hồ Chí Minh");
-            this.comboCN.SelectedIndex = this.comboCN.Items.IndexOf("TP Hồ Chí Minh");
+            this.comboCN.SelectedValueChanged += new System.EventHandler(this.comboCN_SelectedValueChanged);
             // 
             // label4
             // 

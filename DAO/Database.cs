@@ -11,20 +11,44 @@ namespace DAO
 {
     public class Database
     {
+        public static int server = 0;
         SqlConnection conn;
         SqlDataAdapter da;
         DataSet ds;
-        public string serverName = "HONGTHAM2004";
-        public string dbName = "QLKS_PT";
-        public string userName = "sa";
-        public string password = "123456";
+
+        private string connString1 = @"Server=HONGTHAM2004\MSSQLSERVER01;Database=QLKS_PT;Integrated Security=True;TrustServerCertificate=True;";
+        private string connString2 = @"Server=HONGTHAM2004\MSSQLSERVER02;Database=QLKS_PT;Integrated Security=True;TrustServerCertificate=True;";
+        private string connString3 = @"Server=HONGTHAM2004\MSSQLSERVER03;Database=QLKS_PT;Integrated Security=True;TrustServerCertificate=True;";
+       
+
         public Database()
         {
-            // Chuỗi kết nối SQL Server Local với thông tin đã cung cấp
-            string stringConnect = $"Server={serverName}; Database={dbName}; User Id={userName}; Password={password}; TrustServerCertificate=True;";
-
+            // Chuỗi kết nối SQL Server Local sử dụng Windows Authentication
+            string stringConnect ;
+            if (server == 1)
+            {
+                stringConnect = connString1;
+            }
+            else if (server == 2)
+            {
+                stringConnect = connString2;
+            }
+            else if(server == 3)
+            {
+                stringConnect = connString3;
+            }
+            else if (server==4)
+            {
+                stringConnect = connString1;
+            }    
+            else
+            {
+                return;
+            }
+            Console.WriteLine(server);
             conn = new SqlConnection(stringConnect);
         }
+
 
         public DataTable getList(string query)
         {

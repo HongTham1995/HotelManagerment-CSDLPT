@@ -1,5 +1,7 @@
 ﻿using BUS;
+using DAO;
 using DTO;
+using Firebase.Database.Offline;
 using GUI.GUI_COMPONENT;
 using System;
 using System.Collections.Generic;
@@ -59,6 +61,8 @@ namespace GUI
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            taiKhoan = new TaiKhoanBUS();
+            nhanVien = new NhanVienBUS();
             this.ActiveControl = null;
             var item = from taikhoan in taiKhoan.GetListTaiKhoan()
                        join nhanvien in nhanVien.getAllDSNhanVien() on taikhoan.MaNV equals nhanvien.MaNV
@@ -218,6 +222,18 @@ namespace GUI
             {
                 txtPass.UseSystemPasswordChar = true;
                 check = true;
+            }
+        }
+
+        private void comboCN_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (comboCN.SelectedIndex == 0) {
+                Database.server = 4;
+            }else if (comboCN.SelectedIndex == 1) { Database.server = 1; }
+            else if (comboCN.SelectedIndex == 2) { Database.server = 2; }
+            else 
+            {
+                Database.server = 3;
             }
         }
     }
