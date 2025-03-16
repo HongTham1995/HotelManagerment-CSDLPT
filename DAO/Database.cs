@@ -19,7 +19,7 @@ namespace DAO
         private string connString1 = @"Server=HONGTHAM2004\MSSQLSERVER01;Database=QLKS_PT;Integrated Security=True;TrustServerCertificate=True;";
         private string connString2 = @"Server=HONGTHAM2004\MSSQLSERVER02;Database=QLKS_PT;Integrated Security=True;TrustServerCertificate=True;";
         private string connString3 = @"Server=HONGTHAM2004\MSSQLSERVER03;Database=QLKS_PT;Integrated Security=True;TrustServerCertificate=True;";
-       
+        private string connString4 = @"Server=HONGTHAM2004;Database=QLKS_PT;Integrated Security=True;TrustServerCertificate=True;";
 
         public Database()
         {
@@ -39,7 +39,7 @@ namespace DAO
             }
             else if (server==4)
             {
-                stringConnect = connString1;
+                stringConnect = connString4;
             }    
             else
             {
