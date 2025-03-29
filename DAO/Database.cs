@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using DTO;
+using System.Text.RegularExpressions;
 
 namespace DAO
 {
@@ -15,6 +16,7 @@ namespace DAO
         SqlConnection conn;
         SqlDataAdapter da;
         DataSet ds;
+    
 
         private string connString1 = @"Server=HONGTHAM2004\MSSQLSERVER01;Database=QLKS_PT;Integrated Security=True;TrustServerCertificate=True;";
         private string connString2 = @"Server=HONGTHAM2004\MSSQLSERVER02;Database=QLKS_PT;Integrated Security=True;TrustServerCertificate=True;";
@@ -119,6 +121,23 @@ namespace DAO
             }
             conn.Close();
             return list;
+        }
+
+        public string getCN(string query)
+        {
+            string tenCN = "Không tìm thấy"; // Mặc định là không có dữ liệu
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.Read()) // Kiểm tra nếu có dữ liệu
+            {
+                tenCN = reader[0].ToString();
+            }
+
+            reader.Close(); // Đóng reader trước khi đóng connection
+            conn.Close();
+            return tenCN; // Trả về "Không tìm thấy" nếu không có dữ liệu
         }
         public List<NhanVienDTO> getListNV_DTO(string query)
         {

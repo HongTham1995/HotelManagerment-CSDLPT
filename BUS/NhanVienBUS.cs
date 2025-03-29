@@ -166,6 +166,48 @@ namespace BUS
             db.ExecuteNonQuery(query);
         }
 
+        public string getCN(string maNV)
+        {
+            string query = string.Format("SELECT TenCN FROM CHINHANH,NHANVIEN WHERE MaNV = '{0}' AND CHINHANH.MACN = NHANVIEN.MACN", maNV);
+            return db.getCN(query);
+        }
+
+        
+        public void chuyencongtac(NhanVienDTO nv,string chinhanh)
+        {
+            string manv = nv.MaNV;
+            string tenn = nv.TenNV;
+            int gioitinh = nv.GioiTinh;
+            int songayphep = nv.SoNgayPhep;
+            int chucvu = nv.ChucVu;
+            DateTime ngaysinh = nv.NgaySinh;
+            DateTime ngayvaolam = nv.NgayVaoLam;
+            string email = nv.Email;
+            int luong1ngay = nv.Luong1Ngay;
+            string maCN ="";
+            String sever = "";
+
+            if(chinhanh.Equals("Hà Nội")){
+                maCN = "CN_1";
+                sever = @"HONGTHAM2004\MSSQLSERVER01";
+            }else if (chinhanh.Equals("Huế"))
+            {
+                maCN = "CN_2";
+                sever = @"HONGTHAM2004\MSSQLSERVER02";
+            }
+            else
+            {
+                maCN = "CN_3";
+                sever = @"HONGTHAM2004\MSSQLSERVER03";
+            }
+
+            string query = string.Format(@"
+            INSERT INTO [{0}].QLKS_PT.dbo.NhanVien 
+            (MaNV, TenNV, GioiTinh, SoNgayPhep, ChucVu, NgaySinh, NgayVaoLam, Email, Luong1Ngay, MaCN) 
+            VALUES 
+            (@MaNV, @TenNV, @GioiTinh, @SoNgayPhep, @ChucVu, @NgaySinh, @NgayVaoLam, @Email, @Luong1Ngay, @MaCN);", sever);
+
+        }
         /// <summary>
         /// Updates an employee's information in the database
         /// </summary>

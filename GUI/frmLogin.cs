@@ -227,6 +227,7 @@ namespace GUI
 
         private void comboCN_SelectedValueChanged(object sender, EventArgs e)
         {
+            
             if (comboCN.SelectedIndex == 0) {
                 Database.server = 4;
             }else if (comboCN.SelectedIndex == 1) { Database.server = 1; }

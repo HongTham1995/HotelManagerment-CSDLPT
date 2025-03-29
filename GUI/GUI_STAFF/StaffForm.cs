@@ -509,6 +509,10 @@ namespace GUI.GUI_STAFF
                 buttonRounded1.Enabled = true;
             else
                 buttonRounded1.Enabled = false;
+            if (dataNhanVien.SelectedRows.Count >= 1)
+                btn_chuyencongtac.Enabled = true;
+            else
+                btn_chuyencongtac.Enabled = false;
         }
 
         /// <summary>
@@ -1306,6 +1310,94 @@ namespace GUI.GUI_STAFF
                     dataNhanVien.Rows[i].DefaultCellStyle.BackColor = Color.White;
                 }
             }
+        }
+
+
+        /// <summary>
+        /// Handles the Click event of the buttonRounded1 control.
+        /// Prompts the user for confirmation to delete selected employees.
+        /// If confirmed, deletes the selected employees and shows a success message.
+        /// </summary>
+        /// <param name="sender">The source of the event</param>
+        /// <param name="e">An EventArgs that contains the event data</param>
+
+        private void btn_chuyencongtac_Click(object sender, EventArgs e)
+        {
+
+            var nhanvien = dataNhanVien.SelectedRows[0].Cells;
+            var manv = nhanvien["MaNV"].Value.ToString();
+            var tennv = nhanvien["TenNV"].Value.ToString();
+             // Thay thế bằng dữ liệu thực tế
+            string chiNhanhHienTai = nhanVienBUS.getCN(manv);
+            // Tạo Form mới để chọn chi nhánh
+            Form form = new Form();
+            form.Text = "Chuyển Công Tác";
+            form.Size = new Size(350, 250);
+            form.StartPosition = FormStartPosition.CenterScreen;
+
+            // Label & TextBox để hiển thị thông tin nhân viên
+            Label lblMaNV = new Label() { Text = "Mã NV:", Location = new Point(20, 20), AutoSize = true };
+            TextBox txtMaNV = new TextBox() { Text = manv, Location = new Point(120, 20), Width = 180, ReadOnly = true };
+
+            Label lblTenNV = new Label() { Text = "Tên NV:", Location = new Point(20, 60), AutoSize = true };
+            TextBox txtTenNV = new TextBox() { Text = tennv, Location = new Point(120, 60), Width = 180, ReadOnly = true };
+
+            Label lblChiNhanhHienTai = new Label() { Text = "Chi nhánh hiện tại:", Location = new Point(20, 100), AutoSize = true };
+            TextBox txtChiNhanhHienTai = new TextBox() { Text = chiNhanhHienTai, Location = new Point(120, 100), Width = 180, ReadOnly = true };
+
+            Label lblChiNhanhMoi = new Label() { Text = "Chi nhánh mới:", Location = new Point(20, 140), AutoSize = true };
+            ComboBox cbChiNhanhMoi = new ComboBox() { Location = new Point(120, 140), Width = 180 };
+
+            if(chiNhanhHienTai.Equals("Hà Nội")) {
+                cbChiNhanhMoi.Items.Add("Huế");
+                cbChiNhanhMoi.Items.Add("TP Hồ Chí Minh");
+                cbChiNhanhMoi.SelectedIndex = 0;
+            }else if (chiNhanhHienTai.Equals("Huế"))
+            {
+                cbChiNhanhMoi.Items.Add("Hà Nội");
+                cbChiNhanhMoi.Items.Add("TP Hồ Chí Minh");
+                cbChiNhanhMoi.SelectedIndex = 0;
+            }
+            else
+            {
+                cbChiNhanhMoi.Items.Add("Hà Nội");
+                cbChiNhanhMoi.Items.Add("Huế");
+                cbChiNhanhMoi.SelectedIndex = 0;
+            }
+            // Giả sử danh sách chi nhánh
+            
+
+            // Button xác nhận
+            Button btnXacNhan = new Button() { Text = "Xác nhận", Location = new Point(120, 180), Width = 80 };
+            btnXacNhan.Click += (s, ev) =>
+            {
+                string chiNhanhMoi = cbChiNhanhMoi.SelectedItem.ToString();
+                MessageBox.Show($"Mã NV: {manv}\nTên NV: {tennv}\nChi nhánh hiện tại: {chiNhanhHienTai}\nChi nhánh mới: {chiNhanhMoi}",
+                                "Xác nhận chuyển công tác", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                for (int i = 0; i < dataNhanVien.SelectedRows.Count; i++)
+                {
+                    nhanVienBUS.deleteNhanVien(dataNhanVien.SelectedRows[i].Cells[1].Value.ToString());
+                    NhanVienDTO nv = nhanVienBUS.GetNV(manv);
+                    nhanVienBUS.chuyencongtac(nv, chiNhanhMoi);
+                }
+
+                form.Close();
+            };
+
+            // Thêm vào Form
+            form.Controls.Add(lblMaNV);
+            form.Controls.Add(txtMaNV);
+            form.Controls.Add(lblTenNV);
+            form.Controls.Add(txtTenNV);
+            form.Controls.Add(lblChiNhanhHienTai);
+            form.Controls.Add(txtChiNhanhHienTai);
+            form.Controls.Add(lblChiNhanhMoi);
+            form.Controls.Add(cbChiNhanhMoi);
+            form.Controls.Add(btnXacNhan);
+
+            // Hiển thị Form
+            form.ShowDialog();
         }
     }
 }
