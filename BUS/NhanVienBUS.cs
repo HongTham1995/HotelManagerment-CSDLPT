@@ -185,27 +185,32 @@ namespace BUS
             string email = nv.Email;
             int luong1ngay = nv.Luong1Ngay;
             string maCN ="";
-            String sever = "";
+            string serverLinked;
 
-            if(chinhanh.Equals("Hà Nội")){
+            if (chinhanh.Equals("Hà Nội"))
+            {
                 maCN = "CN_1";
-                sever = @"HONGTHAM2004\MSSQLSERVER01";
-            }else if (chinhanh.Equals("Huế"))
+                serverLinked = "[Server_HANOI].QLKS_PT.dbo.NHANVIEN";
+            }
+            else if (chinhanh.Equals("Huế"))
             {
                 maCN = "CN_2";
-                sever = @"HONGTHAM2004\MSSQLSERVER02";
+                serverLinked = "[Server_HUE].QLKS_PT.dbo.NHANVIEN";
             }
             else
             {
                 maCN = "CN_3";
-                sever = @"HONGTHAM2004\MSSQLSERVER03";
+                serverLinked = "[Server_SAIGON].QLKS_PT.dbo.NHANVIEN";
             }
 
-            string query = string.Format(@"
-            INSERT INTO [{0}].QLKS_PT.dbo.NhanVien 
-            (MaNV, TenNV, GioiTinh, SoNgayPhep, ChucVu, NgaySinh, NgayVaoLam, Email, Luong1Ngay, MaCN) 
+            string query = $@"
+            INSERT INTO {serverLinked} 
+            (maNV, tenNV, gioiTinh, soNgayPhep, chucVu, ngaySinh, ngayVaoLam, email, luong1Ngay,xuLy, MaCN) 
             VALUES 
-            (@MaNV, @TenNV, @GioiTinh, @SoNgayPhep, @ChucVu, @NgaySinh, @NgayVaoLam, @Email, @Luong1Ngay, @MaCN);", sever);
+            ('{manv}', N'{tenn}', {gioitinh}, {songayphep}, {chucvu}, '{ngaysinh:yyyy-MM-dd}', 
+             '{ngayvaolam:yyyy-MM-dd}', '{email}', {luong1ngay}, {0} ,'{maCN}');";
+
+            db.ExecuteNonQuery(query);
 
         }
         /// <summary>
