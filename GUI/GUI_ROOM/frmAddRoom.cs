@@ -196,6 +196,7 @@ namespace GUI.GUI_ROOM
                     string str = count.ToString("D3");
                     txtMaP.Text = "P" + date + str;
                     string loaiP = string.Empty;
+                   
                     if (rdVip.Checked)
                     {
                         loaiP = 0 + "";
@@ -220,7 +221,8 @@ namespace GUI.GUI_ROOM
                             chiTietLoaiP = 2 + "";
                         }
                     }
-                    phong.ThemPhong(txtMaP.Text.Trim(), txtTenP.Text.Trim(), loaiP, txtGiaP.Text.Trim(), chiTietLoaiP, 0 + "", 0 + "");
+                    var maCN = Program.nhanVien.MaCN;
+                    phong.ThemPhong(txtMaP.Text.Trim(), txtTenP.Text.Trim(), loaiP, txtGiaP.Text.Trim(), chiTietLoaiP, 0 + "", 0 + "", maCN);
                     for (int i = 0; i < dtTienIch.Rows.Count; i++)
                     {
                         string maTI = dtTienIch.Rows[i][0].ToString();

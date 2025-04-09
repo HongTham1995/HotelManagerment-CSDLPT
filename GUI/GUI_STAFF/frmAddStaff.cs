@@ -264,9 +264,10 @@ namespace GUI.GUI_STAFF
                 var ngayvaolam = dtpNgayVaoLam.Value;
                 var email = txtEmail.Text;
                 var luong1ngay = Convert.ToInt32(txtLuong1Ngay.Text);
+                var maCN = Program.nhanVien.MaCN;
                 if (this.isAdd)
                 {
-                    nhanVienBUS.addNhanVien(manv, tennv, gioitinh, songayphep, chucvu, ngaysinh, ngayvaolam, email, luong1ngay);
+                    nhanVienBUS.addNhanVien(manv, tennv, gioitinh, songayphep, chucvu, ngaysinh, ngayvaolam, email, luong1ngay, maCN);
                     MessageBoxDialog message = new MessageBoxDialog();
                     message.ShowDialog("Thông báo", "Thành công", "Thêm nhân viên mới thành công", MessageBoxDialog.SUCCESS, MessageBoxDialog.YES, "Đóng", "", "");
                 }

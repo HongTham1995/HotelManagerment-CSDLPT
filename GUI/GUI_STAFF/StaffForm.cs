@@ -1257,8 +1257,9 @@ namespace GUI.GUI_STAFF
                 return;
             }
 
+            var maCN =Program.nhanVien.MaCN;
             var manv = getMaNV(gt, nvl);
-            nhanVienBUS.addNhanVien(manv, tennv, gt, snp, cv, ns, nvl, email, l1n);
+            nhanVienBUS.addNhanVien(manv, tennv, gt, snp, cv, ns, nvl, email, l1n,maCN);
             refresh();
         }
 

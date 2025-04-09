@@ -56,11 +56,11 @@ namespace BUS
         /// <param name="ngayvaolam">Date of joining</param>
         /// <param name="email">Email address</param>
         /// <param name="luong1ngay">Daily salary</param>
-        public void addNhanVien(string manv, string tennv, int gioitinh, int songayphep, int chucvu, DateTime ngaysinh, DateTime ngayvaolam, string email, int luong1ngay)
+        public void addNhanVien(string manv, string tennv, int gioitinh, int songayphep, int chucvu, DateTime ngaysinh, DateTime ngayvaolam, string email, int luong1ngay,string maCN)
         {
             var ns = ngaysinh.ToString("yyyy-MM-dd");
             var nvl = ngayvaolam.ToString("yyyy-MM-dd");
-            string query = string.Format("insert into NHANVIEN values ('{0}',N'{1}', {2}, {3}, {4}, '{5}', '{6}', '{7}', {8}, 0)", manv, tennv, gioitinh, songayphep, chucvu, ns, nvl, email, luong1ngay);
+            string query = string.Format("insert into NHANVIEN values ('{0}',N'{1}', {2}, {3}, {4}, '{5}', '{6}', '{7}', {8}, 0,'{9}')", manv, tennv, gioitinh, songayphep, chucvu, ns, nvl, email, luong1ngay,maCN);
             db.ExecuteNonQuery(query);
         }
 

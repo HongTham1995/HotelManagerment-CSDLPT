@@ -11,13 +11,13 @@ namespace DTO
         private DateTime _ngayThanhToan;
         private int _phuongThucThanhToan; // 0 là tiền mặt, 1 là chuyển khoản,...
         private int _xuLy; // 0 là chưa xóa, 1 là đã xóa
-        private string _maCN; // Mã chi nhánh
+        
 
         public HoaDonDTO()
         {
         }
 
-        public HoaDonDTO(string maHD, string maCTT, int giamGia, int phuThu, DateTime ngayThanhToan, int phuongThucThanhToan, int xuLy, string maCN)
+        public HoaDonDTO(string maHD, string maCTT, int giamGia, int phuThu, DateTime ngayThanhToan, int phuongThucThanhToan, int xuLy)
         {
             _maHD = maHD;
             _maCTT = maCTT;
@@ -26,7 +26,7 @@ namespace DTO
             _ngayThanhToan = ngayThanhToan;
             _phuongThucThanhToan = phuongThucThanhToan;
             _xuLy = xuLy;
-            _maCN = maCN;
+           
         }
 
         public string MaHD { get => _maHD; set => _maHD = value; }
@@ -36,6 +36,6 @@ namespace DTO
         public DateTime NgayThanhToan { get => _ngayThanhToan; set => _ngayThanhToan = value; }
         public int PhuongThucThanhToan { get => _phuongThucThanhToan; set => _phuongThucThanhToan = value; }
         public int XuLy { get => _xuLy; set => _xuLy = value; }
-        public string MaCN { get => _maCN; set => _maCN = value; } // Thêm property cho mã chi nhánh
+        
     }
 }

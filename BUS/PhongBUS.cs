@@ -32,11 +32,13 @@ namespace BUS
             string query = "select COUNT(MaP) from PHONG";
             return db.ExecuteNonQuery_getInteger(query);
         }
-        public void ThemPhong(string maP, string tenP, string loaiP, string giaP, string chiTietLoaiP, string tinhTrang, string hienTrang)
+        public void ThemPhong(string maP, string tenP, string loaiP, string giaP, string chiTietLoaiP, string tinhTrang, string hienTrang, string maCN)
         {
-            string query = string.Format("insert into PHONG values ('{0}',N'{1}',{2},{3},{4},{5},{6},{7})", maP, tenP, loaiP, giaP, chiTietLoaiP, tinhTrang, hienTrang, 0);
+            string query = "INSERT INTO PHONG (maP, tenP, loaiP, giaP, chiTietLoaiP, tinhTrang, hienTrang, xuLy, MaCN) " +
+                           "VALUES ('" + maP + "', N'" + tenP + "', " + loaiP + ", " + giaP + ", " + chiTietLoaiP + ", " + tinhTrang + ", " + hienTrang + ", 0, '" + maCN + "')";
             db.ExecuteNonQuery(query);
         }
+
         public void SuaPhong(string maP, string tenP, string loaiP, string giaP, string chiTietLoaiP, string hienTrang)
         {
             string query = string.Format("Update PHONG set tenP = N'{0}', loaiP = {1}, giaP  = {2}, chiTietLoaiP = {3}, hienTrang = {4} where maP = '{5}'", tenP, loaiP, giaP, chiTietLoaiP, hienTrang, maP);
