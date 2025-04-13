@@ -18,9 +18,9 @@ namespace DAO
         DataSet ds;
 
 
-        private string connString1 = @"Server=HONGTHAM2004\SERVER04;Database=QLKS_PT;User ID=sa;Password=123456;TrustServerCertificate=True;";
-        private string connString2 = @"Server=HONGTHAM2004\SERVER05;Database=QLKS_PT;User ID=sa;Password=123456;TrustServerCertificate=True;";
-        private string connString3 = @"Server=HONGTHAM2004\SERVER06;Database=QLKS_PT;User ID=sa;Password=123456;TrustServerCertificate=True;";
+        private string connString1 = @"Server=HONGTHAM2004\SERVER04;Database=QLKS_CN01;User ID=sa;Password=123456;TrustServerCertificate=True;";
+        private string connString2 = @"Server=HONGTHAM2004\SERVER05;Database=QLKS_CN02;User ID=sa;Password=123456;TrustServerCertificate=True;";
+        private string connString3 = @"Server=HONGTHAM2004\SERVER06;Database=QLKS_CN03;User ID=sa;Password=123456;TrustServerCertificate=True;";
         private string connString4 = @"Server=HONGTHAM2004;Database=QLKS_PT;User ID=sa;Password=123456;TrustServerCertificate=True;";
 
 

@@ -1349,11 +1349,11 @@ namespace GUI.GUI_STAFF
             Label lblChiNhanhMoi = new Label() { Text = "Chi nhánh mới:", Location = new Point(20, 140), AutoSize = true };
             ComboBox cbChiNhanhMoi = new ComboBox() { Location = new Point(120, 140), Width = 180 };
 
-            if(chiNhanhHienTai.Equals("Hà Nội")) {
+            if(chiNhanhHienTai.Equals("HÀ NỘI")) {
                 cbChiNhanhMoi.Items.Add("Huế");
                 cbChiNhanhMoi.Items.Add("TP Hồ Chí Minh");
                 cbChiNhanhMoi.SelectedIndex = 0;
-            }else if (chiNhanhHienTai.Equals("Huế"))
+            }else if (chiNhanhHienTai.Equals("HUẾ"))
             {
                 cbChiNhanhMoi.Items.Add("Hà Nội");
                 cbChiNhanhMoi.Items.Add("TP Hồ Chí Minh");

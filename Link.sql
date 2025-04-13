@@ -5,14 +5,14 @@ EXEC sp_addlinkedserver
     @server = 'Server_HUE', 
     @srvproduct = '',
     @provider = 'SQLNCLI',
-    @datasrc = 'HONGTHAM2004\MSSQLSERVER02';
+    @datasrc = 'HONGTHAM2004\SERVER05';
 
 -- Tạo Linked Server cho Sài Gòn từ Hà Nội
 EXEC sp_addlinkedserver 
     @server = 'Server_SAIGON', 
     @srvproduct = '',
     @provider = 'SQLNCLI',
-    @datasrc = 'HONGTHAM2004\MSSQLSERVER03';
+    @datasrc = 'HONGTHAM2004\SERVER06';
 
 -- Cho phép đăng nhập vào Huế
 EXEC sp_addlinkedsrvlogin 
@@ -30,14 +30,14 @@ EXEC sp_addlinkedserver
     @server = 'Server_HANOI', 
     @srvproduct = '',
     @provider = 'SQLNCLI',
-    @datasrc = 'HONGTHAM2004\MSSQLSERVER01';
+    @datasrc = 'HONGTHAM2004\SERVER04';
 
 -- Tạo Linked Server cho Sài Gòn từ Huế
 EXEC sp_addlinkedserver 
     @server = 'Server_SAIGON', 
     @srvproduct = '',
     @provider = 'SQLNCLI',
-    @datasrc = 'HONGTHAM2004\MSSQLSERVER03';
+    @datasrc = 'HONGTHAM2004\SERVER06';
 
 EXEC sp_addlinkedsrvlogin 
     @rmtsrvname = 'Server_HANOI',
@@ -54,14 +54,14 @@ EXEC sp_addlinkedserver
     @server = 'Server_HANOI', 
     @srvproduct = '',
     @provider = 'SQLNCLI',
-    @datasrc = 'HONGTHAM2004\MSSQLSERVER01';
+    @datasrc = 'HONGTHAM2004\SERVER04';
 
 -- Tạo Linked Server cho Huế từ Sài Gòn
 EXEC sp_addlinkedserver 
     @server = 'Server_HUE', 
     @srvproduct = '',
     @provider = 'SQLNCLI',
-    @datasrc = 'HONGTHAM2004\MSSQLSERVER02';
+    @datasrc = 'HONGTHAM2004\SERVER05';
 
 -- Cho phép đăng nhập vào Hà Nội
 EXEC sp_addlinkedsrvlogin 
